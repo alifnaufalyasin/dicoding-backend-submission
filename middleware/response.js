@@ -1,20 +1,28 @@
 module.exports = (req, res, next) => {
-
   // add code for middleware
-  res.sendResponse = (data, message = null, status = 200) => {
-    return res.status(status).send({
-      success: true,
-      data: data,
-      message: message
-    })
+  res.sendResponse = ({data, status="success", tambahan, code = 201}) => {
+    if (tambahan){
+      return res.status(code).send({
+        status: status,
+        ...tambahan,
+        data: data,
+      })
+    }else{
+      return res.status(code).send({
+        status: status,
+        data: data,
+      })
+    }
   }
 
-  res.sendError = (data = {}, message = null, status = 400) => {
-    if (data == null) data = {}
-    return res.status(status).send({
-      success: false,
-      data: data,
-      message: message
+  res.sendError = (
+    message = "Catatan gagal ditambahkan",
+    status = "error",
+    code = 400
+  ) => {
+    return res.status(code).send({
+      status: status,
+      message: message,
     })
   }
 
