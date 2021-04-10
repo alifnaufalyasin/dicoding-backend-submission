@@ -1,11 +1,11 @@
 const Sequelize = require("sequelize")
-require("dotenv").config()
+// require("dotenv").config()
 const db = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USERNAME,
-  process.env.DB_PASSWORD,
+  "dicoding",
+  "dicoding",
+  "PassDicodingDB",
   {
-    host: process.env.DB_HOST,
+    host: "aliven.my.id",
     dialect: "mysql",
     dialectOptions: {
       dateStrings: true,
